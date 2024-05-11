@@ -5,6 +5,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -53,6 +54,10 @@ class TaskRepository extends ServiceEntityRepository
     // ->getOneOrNullResult()
     // ;
     // }
+    /**
+     * @param int $id
+     * @return array|null
+     */
     public function findOneById(int $id): ?array
     {
         return count($this) && isset($this->$id)
@@ -81,6 +86,18 @@ class TaskRepository extends ServiceEntityRepository
             ->orderBy('task.updatedAt', 'DESC');
     }
 
+    /**
+     * @param Category $category
+     * @return array
+     */
+    public function findTasksByCategory(Category $category): array
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->andWhere('task.category= :category')
+            ->setParameter('category', $category)
+            ->getQuery()
+            ->getResult();
+    }
     /**
      * Get or create new query builder.
      *

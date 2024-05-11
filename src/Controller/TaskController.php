@@ -28,6 +28,11 @@ class TaskController extends AbstractController
         return $this->render('task/index.html.twig', ['pagination' => $pagination]);
     }// end index()
 
+    /**
+     * @param Task $task
+     *
+     * @return Response
+     */
     #[Route(
         '/{id}',
         name: 'task_show',

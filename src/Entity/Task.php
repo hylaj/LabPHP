@@ -48,16 +48,11 @@ class Task
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
-    /**
-     * @var string|null
-     */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $comment = null;
 
     /**
      * Category.
-     *
-     * @var Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -133,9 +128,6 @@ class Task
         $this->title = $title;
     }
 
-    /**
-     * @return string|null
-     */
     public function getComment(): ?string
     {
         return $this->comment;
@@ -151,16 +143,12 @@ class Task
         return $this;
     }
 
-    /**
-     * @return Category|null
-     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
     /**
-     * @param Category|null $category
      * @return $this
      */
     public function setCategory(?Category $category): static

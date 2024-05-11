@@ -6,10 +6,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Enum\TaskStatus;
-use App\Entity\Tag;
 use App\Entity\Task;
-use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -26,7 +23,7 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      */
     public function loadData(): void
     {
-        if (null === $this->manager || null === $this->faker) {
+        if (!$this->manager instanceof \Doctrine\Persistence\ObjectManager || !$this->faker instanceof \Faker\Generator) {
             return;
         }
 
@@ -47,7 +44,6 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $task->setCategory($category);
-
 
             return $task;
         });

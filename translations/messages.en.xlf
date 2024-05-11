@@ -42,6 +42,10 @@
         <source>title.task_list</source>
         <target>Tasks list</target>
       </trans-unit>
+      <trans-unit id="title.category_list">
+        <source>title.category_list</source>
+        <target>Category list</target>
+      </trans-unit>
       <trans-unit id="label.created_at">
         <source>label.created_at</source>
         <target>Creation date</target>
