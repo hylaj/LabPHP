@@ -25,15 +25,18 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }// end __construct()
 
+
     /**
-     * @return QueryBuilder
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
+            ->select('category')
             ->orderBy('category.updatedAt', 'DESC');
     }
-
     /**
      * @param QueryBuilder|null $queryBuilder
      * @return QueryBuilder

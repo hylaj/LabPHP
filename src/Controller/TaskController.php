@@ -16,6 +16,12 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/task')]
 class TaskController extends AbstractController
 {
+    /**
+     * @param TaskRepository $taskRepository
+     * @param PaginatorInterface $paginator
+     * @param int $page
+     * @return Response
+     */
     #[Route(name: 'task_index', methods: 'GET')]
     public function index(TaskRepository $taskRepository, PaginatorInterface $paginator, #[MapQueryParameter] int $page = 1): Response
     {
